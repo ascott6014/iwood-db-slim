@@ -35,9 +35,9 @@ CREATE PROCEDURE AddCustomerAndInstall (
   IN zip VARCHAR(20),
   IN phone VARCHAR(20),
   IN email VARCHAR(100),
-  IN install_date DATE,
   IN description TEXT,
   IN estimate DECIMAL(10,2),
+  IN install_date DATE,
   IN notes TEXT
 )
 BEGIN
@@ -46,8 +46,8 @@ BEGIN
 
   SET @cust_id = LAST_INSERT_ID();
 
-  INSERT INTO installs (customer_id, install_date, description, estimate, notes)
-  VALUES (@cust_id, install_date, description, estimate, notes);
+  INSERT INTO installs (customer_id, description, estimate, install_date, notes)
+  VALUES (@cust_id, description, estimate, install_date, notes);
 END;
 //
 
@@ -61,13 +61,13 @@ CREATE PROCEDURE AddCustomerAndRepair (
   IN zip VARCHAR(20),
   IN phone VARCHAR(20),
   IN email VARCHAR(100),
-  IN drop_off DATE,
   IN items_brought TEXT,
   IN problem TEXT,
   IN solution TEXT,
   IN estimate DECIMAL(10,2),
   IN status VARCHAR(20),
-  IN notes TEXT
+  IN notes TEXT,
+  IN drop_off DATE
 )
 BEGIN
   INSERT INTO customers (first_name, last_name, address, city, state, zip, phone, email)
@@ -83,14 +83,14 @@ END;
 -- Add Install for Existing Customer
 CREATE PROCEDURE AddInstallForCustomer (
   IN customer_id INT,
-  IN install_date DATE,
   IN description TEXT,
   IN estimate DECIMAL(10,2),
+  IN install_date DATE,
   IN notes TEXT
 )
 BEGIN
-  INSERT INTO installs (customer_id, install_date, description, estimate, notes)
-  VALUES (customer_id, install_date, description, estimate, notes);
+  INSERT INTO installs (customer_id, description, estimate, install_date, notes)
+  VALUES (customer_id, description, estimate, install_date, notes);
 END;
 //
 

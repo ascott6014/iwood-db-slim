@@ -81,6 +81,7 @@ create table orders (
 	order_id 		int primary key auto_increment,
     customer_id		int not null,
     order_date		date not null,
+    order_total		decimal(10,2) not null,
 	CONSTRAINT orders_fk_customers FOREIGN KEY (customer_id) REFERENCES customers (customer_id)
 );
 
