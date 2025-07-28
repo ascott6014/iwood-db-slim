@@ -97,17 +97,17 @@ END;
 -- Add Repair for Existing Customer
 CREATE PROCEDURE AddRepairForCustomer (
   IN customer_id INT,
-  IN drop_off DATE,
   IN items_brought TEXT,
   IN problem TEXT,
   IN solution TEXT,
   IN estimate DECIMAL(10,2),
   IN status VARCHAR(20),
-  IN notes TEXT
+  IN notes TEXT,
+  IN drop_off DATE
 )
 BEGIN
-  INSERT INTO repairs (customer_id, drop_off_date, items_brought, problem, solution, estimate, status, notes)
-  VALUES (customer_id, drop_off, items_brought, problem, solution, estimate, status, notes);
+  INSERT INTO repairs (customer_id, items_brought, problem, solution, estimate, status, notes, drop_off_date)
+  VALUES (customer_id, items_brought, problem, solution, estimate, status, notes, drop_off);
 END;
 //
 
